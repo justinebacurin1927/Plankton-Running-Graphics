@@ -3,9 +3,19 @@
 #include <graphics.h>
 #include <iostream>
 #include <stdio.h>
-#include <SDL2/SDL.h>
+//#include <SDL2/SDL.h>
 
-int road, roads, sky, buns, house1, winColor, sign;
+//int road, roads, sky, buns, house1, winColor, sign;
+
+#define road     COLOR(68,  84,  110)
+#define roads    COLOR(208, 214, 148)
+#define sky      COLOR(116, 185, 237)
+#define buns     COLOR(250, 213, 92)
+#define house1   COLOR(12,  72,  125)
+#define winColor COLOR(131, 201, 222)
+#define sign     COLOR(147, 179, 230)
+#define myWhite  COLOR(255,255,255)
+#define myBlack  COLOR(0,0,0)
 
 int plankton = 425;
 int planktonSpeed = 2;
@@ -20,24 +30,27 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       setcolor (sky);
       bar (0, 0, 680, 480);
 
+
     //bubble text
-      setcolor (BLACK);
-      setfillstyle (SOLID_FILL, WHITE);
+      setcolor (myBlack);
+      setfillstyle (SOLID_FILL, myWhite);
       fillellipse (405, 60, 150, 60);
       fillellipse (510, 120, 10, 10);
       fillellipse (535, 140, 7, 7);
       fillellipse (560, 160, 6, 6);
 
+      /*
     //text
-      setcolor (BLACK);
-      setbkcolor (WHITE);
+      setcolor (myBlack);
+      setbkcolor (myWhite);
       settextstyle(0, 0, 2);
       outtextxy(330, 15, (char*)"MR. KRAB!!!");
       outtextxy (310, 45, (char*)"PLANKTON STOLE");
       outtextxy (295, 75, (char*)"THE KRABBY PATTY");
-
+*/
+      
     //road
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, road);
       fillellipse (340, 455, 340, 45); // filled road shape
       bar (0, 455, 680, 480);          // solid bottom strip
@@ -46,13 +59,14 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       ellipse (0, 500, 180, 0, 680, 45);
       ellipse (0, 450, 360, 90, 680, 50);
 
+      
     //parking lot
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, road);
       fillellipse (650, 360, 75, 25);
 
     //pole - use bar instead of floodfill
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, BROWN);
       bar (630, 160, 650, 360);
       // original ellipses kept for shape
@@ -70,13 +84,13 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (625, 350, 650, 350);
 
     //sign - fill with fillellipse/bar then draw outlines on top
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, sign);
       fillellipse (635, 90, 45, 65);   // filled base of sign
       bar (590, 125, 680, 145);
       fillellipse (620, 141, 50, 20);
       // original outlines on top
-      setcolor (BLACK);
+      setcolor (myBlack);
       ellipse(620, 73, 180, 270, 30, 60);
       ellipse(650, 73, 270, 360, 30, 60);
       ellipse(620, 73, 180, 270, 10, 40);
@@ -92,7 +106,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       arc (660, 140, 0, 180, 10);
 
     //coral - fill then draw outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, RED);
       fillellipse (270, 315, 8, 75);
       fillellipse (300, 320, 8, 70);
@@ -100,7 +114,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       fillellipse (233, 278, 19, 18);
       fillellipse (335, 295, 18, 22);
       // original outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       ellipse (270, 350, 90, 270, 5, 40);
       ellipse (300, 355, 90, 270, 5, 35);
       ellipse (300, 285, 270, 360, 55, 35);
@@ -115,11 +129,11 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       setfillstyle (SOLID_FILL, roads);
       int r2pts[] = {315, 390, 720, 300, 720, 318, 315, 408};
       fillpoly (4, r2pts);
-      setcolor (BLACK);
+      setcolor (myBlack);
       line (315, 390, 720, 300);
 
     //house 1 - bar then outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, house1);
       bar (540, 300, 570, 340);
       bar (550, 280, 560, 300);
@@ -131,7 +145,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (550, 300, 550, 280);
       line (550, 280, 560, 280);
       // window
-      setfillstyle (SOLID_FILL, BLACK);
+      setfillstyle (SOLID_FILL, myBlack);
       fillellipse (555, 318, 10, 10);
       circle (555, 318, 10);
       setfillstyle (SOLID_FILL, winColor);
@@ -139,7 +153,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       circle (555, 318, 5);
 
     //house 2 - bar then outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, DARKGRAY);
       bar (45, 330, 65, 385);
       bar (50, 315, 55, 330);
@@ -151,7 +165,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (55, 330, 55, 315);
       line (50, 315, 55, 315);
       // window
-      setfillstyle (SOLID_FILL, BLACK);
+      setfillstyle (SOLID_FILL, myBlack);
       fillellipse (55, 350, 7, 7);
       setfillstyle (SOLID_FILL, winColor);
       fillellipse (55, 350, 4, 4);
@@ -174,7 +188,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
 //KRABBY PATTY
 
     //buns bottom - fill then outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, buns);
       // filled shape
       int bbd[] = {plankton-100, 230, plankton+120, 230, plankton+110, 255, plankton-90, 255};
@@ -187,14 +201,14 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (plankton - 100, 230, plankton + 120, 230);
 
     //buns top - fill then outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, buns);
       fillellipse (plankton + 10, 175, 120, 55);
       bar (plankton-110, 195, plankton+130, 205);
       ellipse (plankton + 10, 200, 0, 180, 120, 75);
       line (plankton - 110, 200, plankton + 130, 200);
       // sesame seeds
-      setfillstyle (SOLID_FILL, BLACK);
+      setfillstyle (SOLID_FILL, myBlack);
       fillellipse (plankton - 95, 190, 3, 3);
       fillellipse (plankton + 5, 170, 3, 3);
       fillellipse (plankton + 35, 160, 3, 3);
@@ -209,7 +223,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       fillellipse (plankton - 65, 150, 3, 3);
 
     //patty - fill then outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, RED);
       fillellipse (plankton + 10, 215, 115, 15);
       ellipse (plankton + 10, 227, 180, 0, 115, 15);
@@ -241,14 +255,14 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
 //PLANKTON
 
     //robotic arm left - fill then outline
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, LIGHTGRAY);
       fillellipse (plankton - 20, 292, 7, 45);
       ellipse (plankton - 20, 270, 180, 0, 7, 45);
       line (plankton - 27, 268, plankton - 13, 268);
 
     //robotic arm right - fill then outline
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, LIGHTGRAY);
       fillellipse (plankton + 50, 298, 7, 50);
       ellipse (plankton + 50, 275, 180, 0, 7, 50);
@@ -257,18 +271,18 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (plankton + 43, 268, plankton + 57, 268);
 
     //body
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       fillellipse (plankton, 325, 27, 50);
 
     //eye
-      setcolor (BLACK);
-      setfillstyle (SOLID_FILL, WHITE);
+      setcolor (myBlack);
+      setfillstyle (SOLID_FILL, myWhite);
       fillellipse (plankton - 5, 310, 12, 15);
       ellipse (plankton - 5, 310, 0, 360, 12, 15);
 
     //eye iris
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, RED);
       fillellipse (plankton - 8, 310, 5, 8);
       ellipse (plankton - 8, 310, 0, 360, 5, 8);
@@ -278,7 +292,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       circle (plankton - 5, 307, 3);
 
     //mouth - fill then outlines
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, RED);
       fillellipse (plankton - 5, 338, 15, 15);
       ellipse (plankton - 5, 330, 180, 0, 15, 5);
@@ -288,14 +302,14 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (plankton - 10, 333, plankton - 8, 352);
 
     //tongue
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, LIGHTRED);
       fillellipse (plankton + 5, 354, 10, 6);
       ellipse (plankton + 10, 352, 90, 180, 10, 12);
 
     //eyebrow - fill then outlines
-      setcolor (BLACK);
-      setfillstyle (SOLID_FILL, BLACK);
+      setcolor (myBlack);
+      setfillstyle (SOLID_FILL, myBlack);
       fillellipse (plankton - 3, 288, 15, 6);
       ellipse (plankton + 10, 288, 90, 270, 3, 5);
       ellipse (plankton - 3, 292, 0, 180, 12, 3);
@@ -304,7 +318,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
 
     // left arm
     if (showArm){
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       fillellipse (plankton - 42, 335, 15, 4);
       ellipse (plankton - 40, 333, 180, 0, 15, 3);
@@ -314,7 +328,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
 
     // left arm 2
     if (showArm2) {
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       fillellipse (plankton - 30, 348, 25, 20);
       ellipse (plankton - 50, 333, 270, 360, 25, 25);
@@ -323,7 +337,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
     }
 
     //right arm
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       fillellipse (plankton + 42, 335, 20, 5);
       ellipse (plankton + 33, 333, 360, 90, 20, 5);
@@ -332,7 +346,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (plankton + 33, 328, plankton + 33, 333);
 
     //backpack
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, DARKGRAY);
       // front face
       int bp1[] = {plankton+24, 300, plankton+38, 300, plankton+38, 360, plankton+15, 360};
@@ -354,8 +368,8 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (plankton + 42, 290, plankton + 18, 290);
 
     //strap
-      setcolor (BLACK);
-      setfillstyle (SOLID_FILL, BLACK);
+      setcolor (myBlack);
+      setfillstyle (SOLID_FILL, myBlack);
       fillellipse (plankton + 33, 333, 6, 12);
       ellipse (plankton + 30, 333, 90, 270, 5, 12);
       ellipse (plankton + 37, 333, 90, 270, 5, 12);
@@ -364,7 +378,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
 
     //left leg
     if (showLeg){
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       fillellipse (plankton - 8, 390, 6, 28);
       ellipse (plankton - 10, 397, 90, 180, 5, 25);
@@ -372,7 +386,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (plankton - 15, 397, plankton - 10, 397);
 
     //right leg
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       int rl[] = {plankton+12, 365, plankton+18, 375, plankton+35, 375, plankton+35, 380, plankton+15, 380, plankton+10, 370};
       fillpoly (6, rl);
@@ -385,7 +399,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
 
     //left leg (2)
     if (showLeg2){
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       int ll2[] = {plankton-12, 370, plankton-8, 370, plankton, 375, plankton+22, 375, plankton+22, 380, plankton-5, 380};
       fillpoly (6, ll2);
@@ -397,7 +411,7 @@ void drawScene(bool showLeg, bool showLeg2, bool showArm, bool showArm2, int pla
       line (plankton + 20, 375, plankton + 22, 380);
 
     //right leg (2)
-      setcolor (BLACK);
+      setcolor (myBlack);
       setfillstyle (SOLID_FILL, GREEN);
       int rl2[] = {plankton+5, 373, plankton+10, 370, plankton+5, 400, plankton, 400};
       fillpoly (4, rl2);
@@ -415,6 +429,7 @@ int main() {
     int gd = DETECT, gm;
     initgraph(&gd, &gm, (char*)"680 480");
 
+    /*
     road     = COLOR(68,  84,  110);
     roads    = COLOR(208, 214, 148);
     sky      = COLOR(116, 185, 237);
@@ -422,6 +437,7 @@ int main() {
     house1   = COLOR(12,  72,  125);
     winColor = COLOR(131, 201, 222);
     sign     = COLOR(147, 179, 230);
+    */
 
     bool showLeg  = true;
     bool showLeg2 = false;
